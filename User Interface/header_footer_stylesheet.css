@@ -1,0 +1,367 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+/* NAVIGATION BAR */
+
+nav{
+    border: 2px solid;
+    border-image: linear-gradient(to right, #A9C9D7, #D8D0A8) 2;
+    background-image: linear-gradient(to right, #BDE7F9, #FFF8DE);
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+    gap: 50px;
+    justify-content: space-between;
+}
+
+nav > img{
+    width: 120px;
+}
+
+.navigation_items_container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#first_nav_container{
+    justify-content: space-evenly;
+    width: calc(100% - 50%);
+}
+
+#second_nav_container{
+    width: 300px;
+    justify-content: space-evenly;
+}
+
+.navigation_items, .navigation_items2{
+    position: relative;
+}
+
+.navigation_items2 a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navigation_items a{
+    width: 200px;
+    display: flex;
+    padding: 20px 0;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 20px;
+    color: grey;
+    transition: color 0.2s ease, font-weight 0.2s ease, font-size 0.2s ease;
+}
+
+.navigation_items:hover > a, .navigation_items:hover #booking_nav_link{
+    color: black;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+/* BOOKING NAVIGATION */
+
+#booking_nav{
+    display: block;
+    text-align: center;
+}
+
+#booking_nav_link{
+    gap: 10px;
+}
+
+.booking_dropdown-contents{
+    position: absolute;
+    background-color: white;
+    border: 2px solid #c4c4c4;
+    border-radius: 10px;
+    width: inherit;
+    height: 120px;
+    top: 100%;
+    z-index: 100;
+    padding: 10px 0 0 0;
+    display: none;
+}
+
+.booking_dropdown-contents a{
+    display: block;
+    padding: 10px 0;
+}
+
+.book-a-car{
+    margin-bottom: 10px;
+}
+
+.booking_dropdown-contents a:hover{
+    background-color: #CEEBF3;
+    color: black;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+#booking_nav:hover .booking_dropdown-contents{
+    display: block;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+/* CHATBOX */
+
+.navigation_items2{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#chatbox_nav img{
+    width: 35px;
+    transition: width 0.2s ease, transform 0.2s ease;
+}
+
+#chatbox_nav img:hover{
+    width: 40px;
+    transform: translateY(-5px);
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+/* NOTIFICATION */
+
+#notification_nav img{
+    width: 50px;
+    transition: width 0.2s ease, transform 0.2s ease;
+}
+
+#notification_nav img:hover{
+    width: 55px;
+    transform: translateY(-5px);
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+/* PROFILE */
+
+#profile_nav{
+    width: 60px;
+    height: 55px;
+    display: block;
+}
+
+#profile_nav img{
+    width: 50px;
+    height: 50px;
+    border: 1px solid #c4c4c4;
+    border-radius: 1000px;
+    background-color: white;
+    transition: transform 0.2s ease, border 0.01s ease;
+}
+
+#profile_nav:hover img{
+    border: 2px solid #DBD0A8;
+    transform: translateY(-5px);
+}
+
+.profile_dropdown-contents{
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+    width: 250%;
+    top: 100%;
+    left: -48px;
+    box-shadow: 5px 5px 5px #c4c4c4;
+    padding: 10px 0;
+    display: none;
+}
+
+.profile_dropdown-contents a{
+    width: 100%;
+    height: 50px;
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+    transition: font-size 0.2s ease, font-weight 0.1s ease, background-color 0.2s ease;
+}
+
+.profile_dropdown-contents hr{
+    margin: 10px 5px;
+}
+
+.profile_dropdown-contents a:hover{
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #DAF4FF;
+}
+
+.profile_dropdown-contents .logout_nav:hover{
+    color: white;
+    background-color: #db0000;
+}
+
+#profile_nav:hover .profile_dropdown-contents{
+    display: block;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+/* FLASH MESSAGE */
+
+.flash-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+}
+
+.flash-message.show {
+    opacity: 1;
+}
+
+.flash-message.hide {
+    opacity: 0;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+/* FOOTER */
+
+.footer_base{
+    border: 2px solid #464646;
+    background-color: #464646;
+    margin-top: 150px;
+    padding: 20px 50px;
+    color: white;
+}
+
+.footer_container{
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer_items{
+    padding: 0 10px;
+    min-width: 200px;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+/* ABOUT US */
+
+#about_us{
+    width: 300px;
+}
+
+.footer_items h3{
+    text-align: center;
+}
+
+.footer_items p{
+    margin-top: 30px;
+    width: 100%;
+    overflow-wrap: break-word;
+    text-align: justify;
+    line-height: 1.5;
+    
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+/* CONTENTS */
+
+#contents{
+    width: 350px;
+}
+
+.content_items ul{
+    list-style-type: none;
+}
+
+.content_items li{
+    margin-bottom: 10px;
+    width: 150px;
+}
+
+.content_items a{
+    color: white;
+    text-decoration: none;
+}
+
+.content_items_container{
+    display: flex;
+}
+
+.content_items a:hover{
+    font-weight: bold;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+/* FOLLOW US */
+
+.follow_us_container{
+    display: flex;
+    gap: 15px;
+}
+
+.follow_us_container a {
+    display: inline-block;
+    width: 40px; /* Fixed width container */
+    height: 40px; /* Fixed height container */
+    transition: transform 0.2s; /* Smooth transform effect */
+}
+
+.follow_us_container img{
+    width: 40px;
+}
+
+#x{
+    border-radius: 10px;
+}
+
+/* #facebook, #instagram, #x{
+    margin-right: 10px;
+} */
+
+.follow_us_container img:hover{
+    width: 45px;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+/* CONTACT US */
+
+.contact_us_container{
+    margin-left: 10px;
+}
+
+#contact_us{
+    width: 250px;
+}
+
+.contact_us_items{
+    display: inline-flex;
+}
+
+.contact_us_items img{
+    width: 20px;
+    margin-right: 15px;
+}
+
+#mail{
+    margin-bottom: 25px;
+}
+
+#phone img{
+    width: 15px !important;
+}

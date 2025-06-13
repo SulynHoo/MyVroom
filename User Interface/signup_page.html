@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyVroom | Sign Up</title>
+    <link rel="icon" href="/Pictures/myvroom logo.jpeg">
+    <style>
+        body{
+            background-image: linear-gradient(to right, #2e9acc, #ffedbc);
+            font-family: arial;
+            margin: 0;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* SECTION */
+
+        body section{
+            display: flex;
+            justify-content: center;
+        }
+
+        .login_container{
+            margin: 30px;
+            width:fit-content;
+            position: relative;
+        }
+
+        .shadow{
+            border-radius: 30px;
+            background-image: linear-gradient(to right, #60919B, #9EB6A8);
+            width: 500px;
+            height: 970px;
+            position: relative;
+            z-index: 1;
+            left: 50px;
+            top: 50px;
+        }
+
+        .base{
+            border-radius: 30px;
+            background-color: white;
+            width: 500px;
+            height: fit-content;
+            position: absolute;
+            z-index: 2;
+            top: 0;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* FORM STUFF */
+
+        .base_items{
+            margin: 30px;
+        }
+
+        .base_items h1{
+            font-size: 35px;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 50px;
+            cursor: default;
+        }
+
+        form{
+            max-width: 100%;
+        }
+
+        .signup_labels{
+            font-size: 18px;
+        }
+
+        .signup_inputs{
+            margin-top: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            width: 400px;
+            border: 2px solid lightgrey;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* DIVIDER */
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .divider .line {
+            flex: 1;
+            height: 1px;
+            background: black;
+        }
+
+        .divider p {
+            margin: 0;
+            padding: 0 5px;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* OTHER LOG IN OPTION */
+
+        .other_option{
+            border: 2px solid #c4c4c4;
+            border-radius: 10px;
+            padding: 10px;
+            position: relative;
+            display: inline-flex;
+            cursor: pointer;
+        }
+
+        .other_option:hover{
+            border-color: darkblue;
+            color: #4285F4;
+        }
+
+        #google_container img{
+            width: 25px;
+            margin-right: 10px;
+        }
+
+        .other_option_name{
+            display: inline-flex;
+            align-self: center;
+            font-weight: bold;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* LOG IN BUTTON */
+
+        .signup_button{
+            margin-top: 50px;
+            margin-bottom: 30px;
+            display:flex;
+        }
+
+        .signup_button a{
+            border: 2px solid #1ABC9C;
+            border-radius: 10px;
+            background-color: #1ABC9C;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            padding: 12px;
+            width: 100%;
+            transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .signup_button a:hover{
+            font-weight: bold;
+            border-color: #12a689;
+            background-color: #12a689;
+            transform: translateY(-5px);
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* LOG IN OPTION */
+
+        .login_option{
+            text-align: center;
+            cursor: default;
+            margin-bottom: 50px;
+        }
+
+        .login_option span a{
+            color: blue;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* TERMS AND CONDITIONS */
+
+        .terms_and_conditions{
+            text-align: center;
+        }
+
+        .terms_and_conditions span{
+            color: blue;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* FOOTER */
+
+        .footer_base{
+            border: 2px solid #464646;
+            background-color: #464646;
+            margin-top: 150px;
+            padding: 20px 50px;
+            color: white;
+        }
+
+        .footer_container{
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer_items{
+            padding: 0 10px;
+            min-width: 200px;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* ABOUT US */
+
+        #about_us{
+            width: 300px;
+        }
+
+        .footer_items h3{
+            text-align: center;
+        }
+
+        .footer_items p{
+            margin-top: 30px;
+            width: 100%;
+            overflow-wrap: break-word;
+            text-align: justify;
+            line-height: 1.5;
+            
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* CONTENTS */
+
+        #contents{
+            width: 350px;
+        }
+
+        .content_items ul{
+            list-style-type: none;
+        }
+
+        .content_items li{
+            margin-bottom: 10px;
+            width: 150px;
+        }
+
+        .content_items a{
+            color: white;
+            text-decoration: none;
+        }
+
+        .content_items_container{
+            display: flex;
+        }
+
+        .content_items a:hover{
+            font-weight: bold;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* FOLLOW US */
+
+        .follow_us_container{
+            display: flex;
+            gap: 15px;
+        }
+
+        .follow_us_container a {
+            display: inline-block;
+            width: 40px; /* Fixed width container */
+            height: 40px; /* Fixed height container */
+            transition: transform 0.2s; /* Smooth transform effect */
+        }
+
+        .follow_us_container img{
+            width: 40px;
+        }
+
+        #x{
+            border-radius: 10px;
+        }
+
+        /* #facebook, #instagram, #x{
+            margin-right: 10px;
+        } */
+
+        .follow_us_container img:hover{
+            width: 45px;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* CONTACT US */
+
+        .contact_us_container{
+            margin-left: 10px;
+        }
+
+        #contact_us{
+            width: 250px;
+        }
+        
+        .contact_us_items{
+            display: inline-flex;
+        }
+
+        .contact_us_items img{
+            width: 20px;
+            margin-right: 15px;
+        }
+
+        #mail{
+            margin-bottom: 25px;
+        }
+
+        #phone img{
+            width: 15px !important;
+        }
+
+    </style>
+</head>
+<body>
+    <section>
+        <div class="login_container">
+            <div class="shadow"></div>
+            <div class="base">
+                <div class="base_items">
+                    <h1><b>Sign Up</b></h1>
+
+                    <!-- SIGNUP DETAILS -->
+                    <form>
+                        <label for="fname" class="signup_labels"><b>First Name</b></label><br>
+                        <input type="text" class="signup_inputs" placeholder="Enter your first name" required><br><br><br>
+
+                        <label for="lname" class="signup_labels"><b>Last Name</b></label><br>
+                        <input type="text" class="signup_inputs" placeholder="Enter your last name" required><br><br><br>
+
+                        <label for="email" class="signup_labels"><b>Email</b></label><br>
+                        <input type="email" class="signup_inputs" placeholder="your_email@gmail.com" required><br><br><br>
+
+                        <label for="password" class="signup_labels"><b>Password</b></label><br>
+                        <input type="password" class="signup_inputs" placeholder="Enter your password..." required><br>
+                    </form>
+
+                    <br><br>
+
+                    <!-- DIVIDER -->
+                    <div class="divider">
+                        <div class="line"></div>
+                        <p>or</p>
+                        <div class="line"></div>
+                    </div>
+
+                    <!-- OTHER LOGIN OPTIONS -->
+                    <div class="other_login"> <!--A container for all the login buttons-->
+                        <div class="other_option" id="google_container">
+                            <img src="/Pictures/google logo.png" alt="Google">
+                            <div class="other_option_name">Google</div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <!-- SIGNUP BUTTON -->
+                    <div class="signup_button">
+                        <a href="/User Interface/main_page.html">Sign Up</a>
+                    </div>
+
+                    <!-- LOG IN OPTION -->
+                     <div class="login_option">
+                        <p>Have an account? <span><a href="/User Interface/user_login_page.html">Login here!</a></span></p>
+                     </div>
+
+                    <!-- TERMS AND CONDITIONS -->
+                     <div class="terms_and_conditions">
+                        By signing up, you agree to our <span><u>Terms of Service</u></span> and <span><u>Privacy Policy</u></span>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer_base">
+            <div class="footer_container">
+
+                <!-- ABOUT US -->
+                <div class="footer_items" id="about_us">
+                    <h3>About Us</h3>
+                    <p>BlablablaBlablablaBlablablaBlablablaBlablablaBlablablaBlablablaBlablablaBlablablaBlablablaBlablabla</p>
+                </div>
+
+                <!-- CONTENTS -->
+                <div class="footer_items" id="contents">
+                    <h3>Contents</h3>
+
+                    <div class="content_items_container">
+                        <div class="content_items">
+                            <ul>
+                                <li><a href="/User Interface/main_page.html">Main Page</a></li>
+                                <li><a href="">Booking Page</a></li>
+                                <li><a href="">Contact Us</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="content_items">
+                            <ul>
+                                <li><a href="">Profile Page</a></li>
+                                <li><a href="">Help</a></li>
+                                <li><a href="">Feedback</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FOLLOW US   -->
+                <div class="footer_items" id="follow_us">
+                    <h3>Follow Us</h3>
+
+                    <div class="follow_us_container">
+                        <a href=""><img src="/Pictures/Facebook_icon.svg.png" alt="Facebook" id="facebook"></a>
+                        <a href=""><img src="/Pictures/Instagram_icon.png" alt="Instagram" id="instagram"></a>
+                        <a href=""><img src="/Pictures/X_icon.webp" alt="X" id="x"></a>
+                        <a href=""><img src="/Pictures/tiktok_icon.webp" alt="TikTok" id="tiktok"></a>
+                    </div>
+                </div>
+
+                <!-- CONTACT US -->
+                <div class="footer_items" id="contact_us">
+                    <h3>Contact Us</h3>
+
+                    <div class="contact_us_container">
+                        <div class="contact_us_items" id="mail">
+                            <img src="/Pictures/mail_icon.webp" alt="Email">
+                            <div class="contact_us_details" id="email_address">
+                                helpdesk@myvroom.com
+                            </div>
+                        </div>
+
+                        <div class="contact_us_items" id="phone">
+                            <img src="/Pictures/phone_icon.webp" alt="Phone">
+                            <div class="contact_us_details" id="phone_number">
+                                6012-3456789
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

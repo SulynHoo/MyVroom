@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyVroom | Mainpage</title>
+    <link rel="icon" href="/Pictures/myvroom logo.jpeg">
+    <link rel="stylesheet" href="/User Interface/header_footer_stylesheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /* NAVIGATION BAR */
+
+        #main_nav_link{
+            font-weight: bold;
+            color: black;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* FLASH MESSAGE */
+
+        .flash-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1000;
+        }
+        
+        .flash-message.show {
+            opacity: 1;
+        }
+        
+        .flash-message.hide {
+            opacity: 0;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* SECTION */
+        section{
+            padding: 20px 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* SEARCH BY LOCATION */
+        .search_bar_container{
+            background-image: linear-gradient(to right, #DAF4FF, #FFFBEA);
+            padding: 0 20px;
+            width: fit-content;
+            justify-content: center;
+        }
+
+        .search_bar_items h4{
+            margin-bottom: 10px;
+            padding-left: 10px;
+        }
+
+        .search_bar_items{
+            display: inline-block;
+            align-items: center;
+            /* border: 2px solid red; */
+        }
+
+        .search_bar_items input{
+            height: 30px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 2px solid #94CBA0;
+        }
+
+        .search_bar_items input::placeholder{
+            padding-left: 10px;
+        }
+
+        #location{
+            margin-right: 40px;
+        }
+
+        #location input{
+            width: 500px;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* SEARCH BY DATE AND TIME */
+
+        #from_date_and_time{
+            display: inline-flex;
+            margin-right: 40px;
+        }
+
+        #from_date_and_time h4{
+            padding-right: 20px;
+        }
+
+        #from_date{
+            margin-right: 15px;
+        }
+
+        #from_date label, #from_time label{
+            padding-left: 10px;
+        }
+
+        #from_date input, #from_time input{
+            margin-top: 13px;
+        }
+
+        /* ---------------------------------------------------- */
+        
+        #to_date_and_time{
+            display: inline-flex;
+            margin-right: 50px;
+        }
+
+        #to_date_and_time h4{
+            padding-right: 20px;
+        }
+
+        #to_date{
+            margin-right: 15px;
+        }
+
+        #to_date label, #to_time label{
+            padding-left: 10px;
+        }
+
+        #to_date input, #to_time input{
+            margin-top: 13px;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* SUBMIT BUTTON */
+
+        .submit_button{
+            max-width: 106px;
+            display: inline-flex;
+        }
+
+        button{
+            background-color: #A3D2E7;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 30px;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+
+        button:hover{
+            padding: 11px 31px;
+            font-weight: bold;
+            background-color: #87b3c7;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* MEDIA ALIGNMENT */
+        @media (max-width: 750px){
+            .submit_button{
+                margin:20px 0;
+                align-self: center;
+            }
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* ADVERTISEMENT */
+
+        .advertisement{
+            display: flex;
+            justify-content: center;
+        }
+
+        .advertisement img{
+            width: 80%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* LISTS OF CAR BRANDS */
+
+        .list_section{
+            width: max;
+            justify-content: center;
+            display: flex;
+            padding: 0;
+            margin: 20px 70px;
+            gap: 50px;
+        }
+
+        .list_of_car_brands{
+            border: 2px solid #BDC95C;
+            border-radius: 10px;
+            background-image: linear-gradient(to right, #DBF4FF, #FFFBEA);
+            padding: 0px 10px;
+            height: fit-content;
+            margin-top: 40px;
+        }
+
+        .list_of_car_brands ul{
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .list_of_car_brands li{
+            list-style-type: none;
+            margin: 10px 0;
+            border: 2px solid white;
+            border-radius: 5px;
+            background-color: white;
+            text-align: center;
+            align-content: center;
+            box-shadow: 5px 5px 5px #c4c4c4;
+            width: 200px;
+            height: 40px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;  
+        }
+
+        .list_of_car_brands a{
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .list_of_car_brands li:hover{
+            transform: translateY(-3px);
+            box-shadow: 7px 7px 5px #c4c4c4;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* TOP PICK CAR */
+
+        .top_pick_container{
+            padding: 5px 20px;
+            
+        }
+
+        .top_pick_container a{
+            color: black;
+            text-decoration: none;
+        }
+
+        .top_pick_car_card{
+            border: 2px solid #cdcdcd;
+            box-shadow: 2px 2px 5px #ededed;
+            border-radius: 6px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .top_pick_car_image{
+            border-radius: 5px 5px 0 0;
+            background-color: #ededed;
+            margin-bottom: 10px;
+            padding: 85px 0;
+        }
+
+        .top_pick_car_image img{
+            width: 490px;
+            height: auto;
+        }
+
+        .top_pick_car_desc{
+            padding: 0 20px;
+        }
+
+        #top_car_rating{
+            text-align: end;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #top_pick_car_name{
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        #top_car_price{
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .top_pick_car_card:hover{
+            transform: translateY(-10px);
+            box-shadow:5px 5px 5px #ededed;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* BUDGET FRIENDLY CARS */
+        .budget_cars_container{
+            padding: 14px 20px;
+            width: fit-content;
+        }
+
+        .budget_cars_container h2{
+            font-size: 20px;
+        }
+
+        .budget_cars{
+            display: inline-flex;
+            gap: 20px;
+        }
+
+        .budget_cars a{
+            color: black;
+            text-decoration: none;
+        }
+
+        .budget_cars_card{
+            border: 2px solid #cdcdcd;
+            box-shadow: 2px 2px 5px #ededed;
+            border-radius: 6px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .budget_cars_image{
+            border-radius: 5px 5px 0 0;
+            background-color: #ededed;
+            margin-bottom: 10px;
+        }
+
+        .budget_cars_image img{
+            width: 350px;
+            height: auto;
+        }
+
+        .budget_car_desc{
+            padding: 0 20px;
+        }
+
+        #budget_rating1 small, #budget_rating2 small, #budget_rating3 small, #budget_rating4 small{
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        #budget_price1 p, #budget_price2 p, #budget_price3 p, #budget_price4 p{
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        #budget_name1 h3, #budget_name2 h3, #budget_name3 h3, #budget_name4 h3{
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .budget_cars_card:hover{
+            transform: translateY(-10px);
+            box-shadow: 4px 4px 5px #ededed;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* CAR 1 */
+
+        #budget_rating1{
+            text-align: end;
+        }
+
+        #budget_cars_image1 img{
+            width: 200px;
+            padding: 10px;
+            display: flex;
+            justify-self: center;
+        }
+
+        #budget_price1{
+            font-size: 15px;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* CAR 2 */
+
+        #budget_rating2{
+            text-align: end;
+        }
+
+        #budget_cars_image2 img{
+            width: 200px;
+            padding: 10px;
+            display: flex;
+            justify-self: center;
+        }
+
+        #budget_price2{
+            font-size: 15px;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* CAR 3 */
+
+        #budget_rating3{
+            text-align: end;
+        }
+
+        #budget_cars_image3 img{
+            width: 200px;
+            padding: 10px;
+            display: flex;
+            justify-self: center;
+        }
+
+        #budget_price3{
+            font-size: 15px;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* CAR 4 */
+
+        #budget_rating4{
+            text-align: end;
+        }
+
+        #budget_cars_image4 img{
+            width: 200px;
+            padding: 10px;
+            display: flex;
+            justify-self: center;
+        }
+
+        #budget_price4{
+            font-size: 15px;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* MEDIA ADJUSTMENT */
+
+        @media screen and (max-width: 1430px){
+            .list_section{
+                flex-wrap: wrap;
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* ARTICLE */
+
+        article{
+            margin: 100px 0;
+            display: flex;
+            height: auto;
+        }
+
+        .dropdown_article{
+            width: 25%;
+            text-align: center;
+            position: relative;
+        }
+
+        .cards{
+            padding: 30px 10px;
+            margin-bottom: 10px;
+            cursor: default;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5 ease;
+        }
+
+        .dropdown_content_card{
+            visibility: hidden;
+            opacity: 0;
+            border-radius: 5px;
+            padding: 10px 20px;
+            position: absolute;
+            box-shadow: 5px 5px 5px #262626;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #card1, #card3, #dropdown_card1, #dropdown_card3{
+            background-color: #CEF0FF;
+            border: 2px solid #A3BEC9;
+        }
+
+        #card2, #card4, #dropdown_card2, #dropdown_card4{
+            background-color: #FEF8DF;
+            border: 2px solid #C9C4B0;
+        }
+
+        .dropdown_article:hover .dropdown_content_card{
+            visibility: visible;
+            opacity: 1;
+        }
+
+    </style>
+
+</head>
+<body>
+    <!-- NAVIGATION BAR -->
+    <nav>
+        <img src="/Pictures/myvroom_black and white.png" alt="MyVroom" class="logo">
+
+        <!-- NAVIGATION ITEMS -->
+        <div class="navigation_items_container" id="first_nav_container">
+            <!-- MAIN -->
+            <div class="navigation_items" id="main_nav">
+                <a href="/User Interface/main_page.html" id="main_nav_link">Main</a>
+            </div>
+            <!-- BOOKING -->
+            <div class="navigation_items" id="booking_nav">
+                <a href="/User Interface/booking_page.html" id="booking_nav_link">Booking <i class="fa fa-caret-down"></i></a>
+                <div class="booking_dropdown-contents">
+                    <a href="/User Interface/booking_page.html" class="book-a-car">Book a Car</a>
+                    <a href="/User Interface/booking_history_page.html" class="booking-histroy">Booking History</a>
+                </div>
+            </div>
+            <!-- CONTACT US -->
+            <div class="navigation_items" id="contact-us_nav">
+                <a href="/User Interface/contact_page.html" id="contactUs_nav_link">Contact Us</a>
+            </div>
+        </div>
+
+        <!-- NAVIGATION ITEMS -->
+        <div class="navigation_items_container" id="second_nav_container">
+            <!-- CHATBOX -->
+            <div class="navigation_items2" id="chatbox_nav">
+                <a href="" class="chatbox"><img src="/Pictures/bubble-chat.png" alt="Chatbox"></a>
+            </div>
+            <!-- NOTIFICATION -->
+            <div class="navigation_items2" id="notification_nav">
+                <a href="" class="notification"><img src="/Pictures/notification_icon.png" alt="Notification"></a>
+            </div>
+            <!-- PROFILE -->
+            <div class="navigation_items2" id="profile_nav">
+                <a href="" class="profile"><img src="/Pictures/profile_icon.jpg" alt="Profile" id="nav_profile_picture"></a>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const savedImage = localStorage.getItem('profileImage');
+                        if (savedImage) {
+                            const profileImg = document.getElementById('nav_profile_picture');
+                            if (profileImg) {
+                                profileImg.src = savedImage;
+                            }
+                        }
+                    });
+                </script>
+
+                <div class="profile_dropdown-contents">
+                    <a href="/User Interface/profile_page.html" class="account_nav">Account</a>
+                    <a href="/User Interface/help_page.html" class="help_nav">Help</a>
+                    <a href="/User Interface/feedback_page.html" class="feedback_nav">Feedback</a>
+                    <hr>
+                    <a href="/User Interface/user_login_page.html" class="logout_nav" onclick="logout(event)">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION -->
+    <section>
+        <div class="search_bar_container">
+            <!-- SEARCH BY LOCATION -->
+            <div class="search_bar_items" id="location">
+                <h4>Location</h4>
+                <input type="text" class="search_input" placeholder="Enter your location" required>
+            </div>
+
+            <!-- SEARCH BY DATE AND TIME -->
+            <div class="search_bar_items" id="from_date_and_time">
+                <h4>From</h4>
+                <div id="from_date">
+                    <label for="from_date"><small>Date</small></label><br>
+                    <input type="date" class="search_input">
+                </div>
+                <div id="from_time">
+                    <label for="from_date"><small>Time</small></label><br>
+                    <input type="time" class="search_input">
+                </div>
+            </div>
+
+            <div class="search_bar_items" id="to_date_and_time">
+                <h4>To</h4>
+                <div id="to_date">
+                    <label for="to_date"><small>Date</small></label><br>
+                    <input type="date" class="search_input">
+                </div>
+                <div id="to_time">
+                    <label for="to_date"><small>Time</small></label><br>
+                    <input type="time" class="search_input">
+                </div>
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+             <div class="submit_button">
+                <button onclick="">Search</button>
+             </div>
+        </div>
+    </section>
+    <section class="advertisement_section">
+        <!-- ADVERTISEMENT -->
+        <div class="advertisement">
+            <img src="/Pictures/ads1.png" alt="Advertisement">
+        </div>
+    </section>
+
+    <section class="list_section">
+        <!-- LISTS OF CAR BRANDS -->
+        <div class="list_of_car_brands">
+            <ul>
+                <a href=""><li>Toyota</li></a>
+                <a href=""><li>Perodua</li></a>
+                <a href=""><li>Honda</li></a>
+                <a href=""><li>Subaru</li></a>
+                <a href=""><li>Mercedes Benz</li></a>
+                <a href=""><li>BMW</li></a>
+                <a href=""><li>Audi</li></a>
+            </ul>
+        </div>
+
+        <!-- TOP PICK CAR -->
+        <div class="top_pick_container">
+            <h1><b><i>TOP PICK</i></b></h1>
+            <a href="">
+                <div class="top_pick_car_card">
+                    <div class="top_pick_car_image">
+                        <img src="/Pictures/toyota corolla.png" alt="Top Pick Car: Brand">
+                    </div>
+
+                    <div class="top_pick_car_desc" id="top_car_rating">
+                        <small><b>Rating:</b> <span id="top_pick_car_rating">0.0</span> / 5.0</small>
+                    </div>
+
+                    <div class="top_pick_car_desc" id="top_pick_car_name">
+                        <h3>Toyota Corolla</h3>
+                    </div>
+
+                    <div class="top_pick_car_desc" id="top_car_price">
+                        <p>RM <span id="top_pick_car_price">0.00</span> /hour</p><br>
+                    </div>
+                </div>
+            </a>
+            
+        </div>
+
+        <!-- BUDGET FRIEDNLY CARS -->
+        <div class="budget_cars_container">
+            <h2><b><i>BUDGET-FRIENDLY DEALS</i></b></h2>
+            <div class="budget_cars" id="budget_car_row1">
+
+                <!-- CAR 1 -->
+                <a href="">
+                    <div class="budget_cars_card" id="budget_car1">
+                        <div class="budget_cars_image" id="budget_cars_image1">
+                            <img src="/Pictures/kia optima.webp" alt="Kia Optima">
+                        </div>
+
+                        <div class="budget_car_desc" id="budget_rating1">
+                            <small><b>Rating:</b> <span id="budget_car_rating1">0.0</span> / 5.0</small>
+                        </div>
+
+                        <div class="budget_car_desc" id="budget_name1">
+                            <h3 id="budget_car_name1">Kia Optima</h3>
+                        </div>
+
+                        <div class="budget_car_desc" id="budget_price1">
+                            <p>RM <span id="budget_car_price1">0.00</span> /hour</p><br>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- CAR 2 -->
+                <a href="">
+                    <div class="budget_cars_card" id="budget_car2">
+                        <div class="budget_cars_image" id="budget_cars_image2">
+                            <img src="/Pictures/perodua bezza.png" alt="Perodua Bezza">
+                        </div>
+
+                        <div class="budget_car_desc" id="budget_rating2">
+                            <small><b>Rating:</b> <span id="budget_car_rating2">0.0</span> / 5.0</small>
+                        </div>
+
+                        <div class="budget_car_desc" id="budget_name2">
+                            <h3 id="budget_car_name2">Perodua Bezza</h3>
+                        </div>
+
+                        <div class="budget_car_desc" id="budget_price2">
+                            <p>RM <span id="budget_car_price2">0.00</span> /hour</p><br>
+                        </div>
+                    </div>
+                </a>
+            </div> <br><br>
+            <div class="budget_cars" id="budget_car_row2">
+
+                <!-- CAR 3 -->
+                <a href="">
+                    <div class="budget_cars_card" id="budget_car3">
+                        <div class="budget_cars_image" id="budget_cars_image3">
+                            <img src="/Pictures/kia optima.webp" alt="Kia Optima">
+                        </div>
+
+                        <div class="budget_car_desc" id="budget_rating3">
+                            <small><b>Rating:</b> <span id="budget_car_rating3">0.0</span> / 5.0</small>
+                        </div>
+
+                        <div class="budget_car_desc" id="budget_name3">
+                            <h3 id="budget_car_name3">Kia Optima Part2</h3>
+                        </div>
+
+                        <div class="budget_car_desc" id="budget_price3">
+                            <p>RM <span id="budget_car_price3">0.00</span> /hour</p><br>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- CAR 4 -->
+                <a href="">
+                    <div class="budget_cars_card" id="budget_car4">
+                        <div class="budget_cars_image" id="budget_cars_image4">
+                            <img src="/Pictures/perodua bezza.png" alt="Perodua Bezza">
+                        </div>
+
+                        <div class="budget_car_desc" id="budget_rating4">
+                            <small><b>Rating:</b> <span id="budget_car_rating4">0.0</span> / 5.0</small>
+                        </div>
+
+                        <div class="budget_car_desc" id="budget_name4">
+                            <h3 id="budget_car_name4">Perodua Bezza Part2</h3>
+                        </div>
+
+                        <div class="budget_car_desc" id="budget_price4">
+                            <p>RM <span id="budget_car_price4">0.00</span> /hour</p><br>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <article>
+        <!-- CARD 1 -->
+        <div class="dropdown_article">
+            <div class="cards" id="card1">
+                <h2>What is MyVroom?</h2>
+            </div>
+            <div class="dropdown_content_card" id="dropdown_card1">
+                <p>
+                    In 2023, a group of travel enthusiasts and tech innovators noticed a frustrating trend: renting a car was either overly complicated, expensive, or outdated.
+                    <br><br>
+                    Driven by the belief that mobility should be simple, affordable, and tech-savvy, the team launched MyVroom—a next-gen car rental platform. 
+                </p>
+            </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="dropdown_article">
+            <div class="cards" id="card2">
+                <h2>More Options to Choose From!</h2>
+            </div>
+            <div class="dropdown_content_card" id="dropdown_card2">
+                <p>
+                    Tired of limited rental options? MyVroom changes the game with the widest selection of vehicles—from budget compacts to luxury SUVs, eco-friendly EVs to adventure-ready 4x4s.
+                    <br><br>
+                    Need a vintage convertible for a weekend getaway? A spacious van for moving day? Or an electric car for zero-emissions commuting? We’ve got you covered.
+                </p>
+            </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="dropdown_article">
+            <div class="cards" id="card3">
+                <h2>No Hidden Fees!</h2>
+            </div>
+            <div class="dropdown_content_card" id="dropdown_card3">
+                <p>
+                    With transparent pricing, flexible rentals, and unique local fleet partnerships, MyVroom ensures you don’t just book a car—you find the exact ride for your needs. More choices, fewer compromises.
+                </p>
+            </div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="dropdown_article">
+            <div class="cards" id="card4">
+                <h2>Within Your Budget Range!</h2>
+            </div>
+            <div class="dropdown_content_card" id="dropdown_card4">
+                <p>
+                    MyVroom makes car rentals affordable for everyone. Enjoy quality vehicles at transparent rates, with no hidden fees. Drive more, pay less.
+                </p>
+            </div>
+        </div>  
+    </article>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer_base">
+            <div class="footer_container">
+
+                <!-- ABOUT US -->
+                <div class="footer_items" id="about_us">
+                    <h3>About Us</h3>
+                    <p>
+                        In 2023, a group of travel enthusiasts and tech innovators noticed a frustrating trend: renting a car was either overly complicated, expensive, or outdated. 
+                        Driven by the belief that mobility should be simple, affordable, and tech-savvy, the team launched MyVroom—a next-gen car rental platform. 
+                    </p>
+                </div>
+
+                <!-- CONTENTS -->
+                <div class="footer_items" id="contents">
+                    <h3>Contents</h3>
+
+                    <div class="content_items_container">
+                        <div class="content_items">
+                            <ul>
+                                <li><a href="/User Interface/main_page.html">Main Page</a></li>
+                                <li><a href="/User Interface/booking_page.html">Booking Page</a></li>
+                                <li><a href="/User Interface/contact_page.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="content_items">
+                            <ul>
+                                <li><a href="/User Interface/profile_page.html">Profile Page</a></li>
+                                <li><a href="/User Interface/help_page.html">Help</a></li>
+                                <li><a href="/User Interface/feedback_page.html">Feedback</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FOLLOW US   -->
+                <div class="footer_items" id="follow_us">
+                    <h3>Follow Us</h3>
+
+                    <div class="follow_us_container">
+                        <a href=""><img src="/Pictures/Facebook_icon.svg.png" alt="Facebook" id="facebook"></a>
+                        <a href=""><img src="/Pictures/Instagram_icon.png" alt="Instagram" id="instagram"></a>
+                        <a href=""><img src="/Pictures/X_icon.webp" alt="X" id="x"></a>
+                        <a href=""><img src="/Pictures/tiktok_icon.webp" alt="TikTok" id="tiktok"></a>
+                    </div>
+                </div>
+
+                <!-- CONTACT US -->
+                <div class="footer_items" id="contact_us">
+                    <h3>Contact Us</h3>
+
+                    <div class="contact_us_container">
+                        <div class="contact_us_items" id="mail">
+                            <img src="/Pictures/mail_icon.webp" alt="Email">
+                            <div class="contact_us_details" id="email_address">
+                                helpdesk@myvroom.com
+                            </div>
+                        </div>
+
+                        <div class="contact_us_items" id="phone">
+                            <img src="/Pictures/phone_icon.webp" alt="Phone">
+                            <div class="contact_us_details" id="phone_number">
+                                6012-3456789
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLASH MESSAGE -->
+    <div id="flashMessage" class="flash-message"></div>
+</body>
+</html>

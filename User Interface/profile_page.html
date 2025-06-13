@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyVroom | Profile</title>
+    <link rel="stylesheet" href="/User Interface/header_footer_stylesheet.css">
+    <link rel="stylesheet" href="/User Interface/user-profile-stylesheet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/Pictures/myvroom logo.jpeg">
+    <style>
+        /* SIDE CONTENTS */
+
+        #profile_content{
+            background-color: #a3d2e7;
+            border: 2px solid #a3d2e7;
+            box-shadow: 2px 2px 2px #c4c4c4;
+        }
+
+        #profile_content:hover{
+            box-shadow: 4px 4px 4px #c4c4c4;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* CONTENT DISPLAY */
+
+        .content_display{
+            padding: 5px 30px;
+        }
+
+        .content_display > img{
+            width: 150px;
+            height: 150px;
+            border: 3px solid #349ccc;
+            border-radius: 1000px;
+            display: flex;
+            justify-self: center;
+            transition: transform 0.2s ease;
+        }
+
+        .content_display .change_profile_btn{
+            display: flex;
+            justify-self: center;
+            background-color: transparent;
+            border: transparent;
+            font-size: 15px;
+            cursor: pointer;
+            gap: 5px;
+            margin: 20px 0 40px 0;
+        }
+
+        .content_display .change_profile_btn:hover{
+            font-weight: 600;
+        }
+
+        .content_display > img:hover{
+            transform: translateY(-3px);
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* CONTENT BOX CONTAINER */
+
+        .content_box_container{
+            display: inline-flex;
+            justify-content: space-between;
+            height: max-content;
+            margin-bottom: 20px;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* PERSONAL INFORMATION */
+
+        .personal_information{
+            border: 2px solid #67AECE;
+            border-radius: 10px;
+            width: 48%;
+            padding: 0 0 10px 20px;
+            box-shadow: 3px 3px 5px #c4c4c4;
+        }
+
+        .personal_information h1{
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .personal_information form{
+            display: inline-grid;
+            grid-auto-flow: row;
+            margin-right: 15px;
+            margin-left: 2px;
+        }
+
+        .personal_information input{
+            border: 2px solid #c4c4c4;
+            border-radius: 20px;
+            padding: 10px 15px;
+            font-size: 15px;
+            width: 200px;
+        }
+
+        .personal_information label{
+            font-size: 16px;
+            font-weight:600;
+        }
+
+        /* VEHICLE LICENSE */
+
+        .personal_information p{
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .personal_information small{
+            font-weight: normal;
+        }
+
+        #front_view_license{
+            margin-right: 20px;
+        }
+
+        #front_view_license, #back_view_license{
+            padding: 5px 0;
+            border: transparent;
+            border-radius: 0;
+        }
+
+        .save_btn button{
+            padding: 10px 100px;
+            margin: 50px 0 5px 0;
+            border: 2px solid #c4c4c4;
+            border-radius: 20px;
+            display: flex;
+            justify-self: center;
+            font-size: 15px;
+            box-shadow: 2px 2px 5px #c4c4c4;
+            cursor: pointer;
+            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .save_btn button:hover{
+            background-color: #21b849;
+            border-color: #21b849;
+            font-weight:700;
+            transform: translateY(-3px);
+            box-shadow: 4px 4px 5px #c4c4c4;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* PAYMENT AND BOOKING HISTORY CONTAINER */
+
+        .payment_booking-history_container{
+            width: 48%;
+            height: auto;
+            display: block;
+        }
+
+        /* PAYMENT INFORMATION */
+        .payment_information{
+            border: 2px solid #67AECE;
+            border-radius: 10px;
+            padding: 0 0 10px 20px;
+            box-shadow: 3px 3px 5px #c4c4c4;
+            margin-bottom: 15px;
+        }
+
+        .payment_information h1, .booking_history h1{
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .payment_information img{
+            border: 2px solid #c4c4c4;
+            border-radius: 10px;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            justify-self: center;
+            margin-bottom: 20px;
+            padding: 5px;
+        }
+
+        /* BOOKING HISTORY */
+        .booking_history{
+            border: 2px solid #67AECE;
+            border-radius: 10px;
+            padding: 0 0 10px 20px;
+            box-shadow: 3px 3px 5px #c4c4c4;
+            max-height: 250px;
+        }
+
+        .booking_history table, th, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px 20px;
+        }
+
+        /* ------------------------------------------------------------------------------------------------------------------------------------- */
+        /* FOOTER */
+
+        .footer_base{
+            margin-top: 5px !important;
+        }
+    </style>
+    <script>
+        // FLASH MESSAGE
+        function showMessage(message = "This message will disappear in 3 seconds", duration = 3000) {
+            const flashMessage = document.getElementById('flashMessage');
+            flashMessage.textContent = message;
+            flashMessage.classList.add('show');
+            flashMessage.classList.remove('hide');
+            
+            setTimeout(() => {
+                flashMessage.classList.remove('show');
+                flashMessage.classList.add('hide');
+            }, duration);
+        }
+
+        function logout(event) {
+            event.preventDefault(); // Prevent immediate navigation
+            if (confirm("Do you want to log out?")) {
+                showMessage("Logging out...", 2000);
+                // After message disappears, proceed with logout
+                setTimeout(() => {
+                    window.location.href = event.target.getAttribute('href');
+                }, 2000);
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- NAVIGATION BAR -->
+    <nav>
+        <img src="/Pictures/myvroom_black and white.png" alt="MyVroom" class="logo">
+
+        <!-- NAVIGATION ITEMS -->
+        <div class="navigation_items_container" id="first_nav_container">
+            <!-- MAIN -->
+            <div class="navigation_items" id="main_nav">
+                <a href="/User Interface/main_page.html" id="main_nav_link">Main</a>
+            </div>
+            <!-- BOOKING -->
+            <div class="navigation_items" id="booking_nav">
+                <a href="/User Interface/booking_page.html" id="booking_nav_link">Booking <i class="fa fa-caret-down"></i></a>
+                <div class="booking_dropdown-contents">
+                    <a href="/User Interface/booking_page.html" class="book-a-car">Book a Car</a>
+                    <a href="" class="booking-histroy">Booking History</a>
+                </div>
+            </div>
+            <!-- CONTACT US -->
+            <div class="navigation_items" id="contact-us_nav">
+                <a href="/User Interface/contact_page.html" id="contactUs_nav_link">Contact Us</a>
+            </div>
+        </div>
+
+        <!-- NAVIGATION ITEMS -->
+        <div class="navigation_items_container" id="second_nav_container">
+            <!-- CHATBOX -->
+            <div class="navigation_items2" id="chatbox_nav">
+                <a href="" class="chatbox"><img src="/Pictures/bubble-chat.png" alt="Chatbox"></a>
+            </div>
+            <!-- NOTIFICATION -->
+            <div class="navigation_items2" id="notification_nav">
+                <a href="" class="notification"><img src="/Pictures/notification_icon.png" alt="Notification"></a>
+            </div>
+            <!-- PROFILE -->
+            <div class="navigation_items2" id="profile_nav">
+                <a href="" class="profile"><img src="/Pictures/profile_icon.jpg" alt="Profile" id="nav_profile_picture"></a>
+                <div class="profile_dropdown-contents">
+                    <a href="/User Interface/profile_page.html" class="account_nav">Account</a>
+                    <a href="/User Interface/help_page.html" class="help_nav">Help</a>
+                    <a href="/User Interface/feedback_page.html" class="feedback_nav">Feedback</a>
+                    <hr>
+                    <a href="/User Interface/user_login_page.html" class="logout_nav" onclick="logout(event)">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <!-- SIDE CONTENTS -->
+        <div class="side_contents_container">
+            <!-- PROFILE -->
+            <button onclick="window.location.href = '/User Interface/profile_page.html'" class="side_contents" id="profile_content">    
+                <div class="side_contents_icon" id="profile_icon">
+                    <img src="/Pictures/profile_icon_round.png" alt="Profile">
+                </div>
+                <div class="side_contents_name" id="profile_name">Profile</div>
+            </button>
+
+            <!-- HELP -->
+            <button onclick="window.location.href='/User Interface/help_page.html'" class="side_contents" id="help_content">    
+                <div class="side_contents_icon" id="help_icon">
+                    <img src="/Pictures/help_icon.png" alt="Help">
+                </div>
+                <div class="side_contents_name" id="help_name">Help</div>
+            </button>
+
+            <!-- FEEDBACK -->
+            <button onclick="window.location.href='/User Interface/feedback_page.html'" class="side_contents" id="feedback_content">    
+                <div class="side_contents_icon" id="feedback_icon">
+                    <img src="/Pictures/feedback_icon.png" alt="Feedback">
+                </div>
+                <div class="side_contents_name" id="feedback_name">Feedback</div>
+            </button>
+
+            <!-- CONTACT US -->
+            <button onclick="window.location.href = '/User Interface/contact_page.html'" class="side_contents" id="contact_us_content">    
+                <div class="side_contents_icon" id="contact_us_icon">
+                    <img src="/Pictures/contact_us_icon.png" alt="Contact Us">
+                </div>
+                <div class="side_contents_name" id="contact_us_name">Contact Us</div>
+            </button>
+        </div>
+
+        <!-- CONTENT DISPLAY -->
+        <div class="content_display">
+            <h1 id="username_profile_page">User's Name</h1>
+            <img id="user_profile_picture" src="/Pictures/profile_icon.jpg" alt="Profile" >
+            <input type="file" id="image_upload" accept="image/*" style="display:none;">
+            <button class="change_profile_btn" onclick="document.getElementById('image_upload').click()">
+                <u>Change Profile</u><i class="fa fa-pencil"></i>
+            </button>
+            <script>
+                // Wait for DOM to be fully loaded
+                document.addEventListener('DOMContentLoaded', function() {
+                    const imageUpload = document.getElementById('image_upload');
+
+                    // Check if a saved profile image exists
+                    const savedImage = localStorage.getItem('profileImage');
+                    if (savedImage) {
+                        document.getElementById('nav_profile_picture').src = savedImage;
+                        document.getElementById('user_profile_picture').src = savedImage;
+                    }
+
+                    imageUpload.addEventListener('change', function(event) {
+                        const file = event.target.files[0];
+                
+                        if (file) {
+                            // Validate it's an image
+                            if (!file.type.match('image.*')) {
+                                alert('Please select an image file');
+                                return;
+                            }
+                            
+                            const reader = new FileReader();
+                            
+                            reader.onload = function(e) {
+                                // Update both profile pictures on the page
+                                document.getElementById('nav_profile_picture').src = e.target.result;
+                                document.getElementById('user_profile_picture').src = e.target.result;
+                                localStorage.setItem('profileImage', e.target.result);
+                            };
+                            
+                            reader.readAsDataURL(file);
+                        }
+                    });
+                });
+            </script>
+            <div class="content_box_container">
+                <!-- PERSONAL INFORMATION -->
+                <div class="personal_information">
+                    <h1><b>Personal Information</b></h1>
+                    <form>
+                        <label for="first_name">First Name</label>
+                        <input type="text" id="first_name" name="first_name" placeholder="Your first name" required><br>
+                    </form>
+                    <form>
+                        <label for="last_name">Last Name</label>
+                        <input type="text" id="last_name" name="last_name" placeholder="Your last name" required>
+                    </form>
+                    <form>
+                        <label for="date_of_birth">Date of Birth</label>
+                        <input type="date" id="date_of_birth" name="date_of_birth"><br>
+                    </form>
+                    <form>
+                        <label for="ic_number">I.C. Number</label>
+                        <input type="number" id="ic_number" name="ic_number" placeholder="eg: 991234075678" required><br>
+                    </form>
+                    <form>
+                        <label for="phone_number">Tel. Number</label>
+                        <input type="tel" id="phone_number" name="phone_number" placeholder="eg: 0123456789" required><br>
+                    </form>
+                    <form>
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your-email@gmail.com" required><br>
+                    </form>
+                    <br><br>
+
+                    <p>Vehicle License <small>(Upload a photo of your license)</small></p>
+                    
+                    <form>
+                        <label for="front_view_license">Front View</label>
+                        <input type="file" id="front_view_license" accept="image\*"><br>
+                    </form>
+                    <form>
+                        <label for="back_view_license">Back View</label>
+                        <input type="file" id="back_view_license" accept="image\*"><br>
+                    </form>
+
+                    <div class="save_btn">
+                        <button type="submit">Save</button>
+                    </div>
+                </div>
+                <div class="payment_booking-history_container">
+                    <!-- PAYMENT INFORMATION -->
+                    <div class="payment_information">
+                        <h1><b>Payment Information</b></h1>
+                        <img id="qr_code" src="/Pictures/qr code.png" alt="QR Payment">
+                    </div>
+                    <!-- BOOKING HISTORY -->
+                    <div class="booking_history">
+                        <h1>Booking History</h1>
+                        <table class="booking_history_tables">
+                            <tr>
+                                <th colspan="2">Date</th>
+                                <th rowspan="2">Car Details</th>
+                                <th rowspan="2">Amount (RM)</th>
+                                <th rowspan="2">Status</th>
+                            </tr>
+                            <tr>
+                                <th>From</th>
+                                <th>To</th>
+                            </tr>
+                            <!-- HISTORY STUFF IN HERE -->
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer_base">
+            <div class="footer_container">
+
+                <!-- ABOUT US -->
+                <div class="footer_items" id="about_us">
+                    <h3>About Us</h3>
+                    <p>
+                        In 2023, a group of travel enthusiasts and tech innovators noticed a frustrating trend: renting a car was either overly complicated, expensive, or outdated. 
+                        Driven by the belief that mobility should be simple, affordable, and tech-savvy, the team launched MyVroom—a next-gen car rental platform. 
+                    </p>
+                </div>
+
+                <!-- CONTENTS -->
+                <div class="footer_items" id="contents">
+                    <h3>Contents</h3>
+
+                    <div class="content_items_container">
+                        <div class="content_items">
+                            <ul>
+                                <li><a href="/User Interface/main_page.html">Main Page</a></li>
+                                <li><a href="/User Interface/booking_page.html">Booking Page</a></li>
+                                <li><a href="/User Interface/contact_page.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="content_items">
+                            <ul>
+                                <li><a href="/User Interface/profile_page.html">Profile Page</a></li>
+                                <li><a href="/User Interface/help_page.html">Help</a></li>
+                                <li><a href="/User Interface/feedback_page.html">Feedback</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FOLLOW US   -->
+                <div class="footer_items" id="follow_us">
+                    <h3>Follow Us</h3>
+
+                    <div class="follow_us_container">
+                        <a href=""><img src="/Pictures/Facebook_icon.svg.png" alt="Facebook" id="facebook"></a>
+                        <a href=""><img src="/Pictures/Instagram_icon.png" alt="Instagram" id="instagram"></a>
+                        <a href=""><img src="/Pictures/X_icon.webp" alt="X" id="x"></a>
+                        <a href=""><img src="/Pictures/tiktok_icon.webp" alt="TikTok" id="tiktok"></a>
+                    </div>
+                </div>
+
+                <!-- CONTACT US -->
+                <div class="footer_items" id="contact_us">
+                    <h3>Contact Us</h3>
+
+                    <div class="contact_us_container">
+                        <div class="contact_us_items" id="mail">
+                            <img src="/Pictures/mail_icon.webp" alt="Email">
+                            <div class="contact_us_details" id="email_address">
+                                helpdesk@myvroom.com
+                            </div>
+                        </div>
+
+                        <div class="contact_us_items" id="phone">
+                            <img src="/Pictures/phone_icon.webp" alt="Phone">
+                            <div class="contact_us_details" id="phone_number">
+                                6012-3456789
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- FLASH MESSAGE -->
+    <div id="flashMessage" class="flash-message"></div> <!-- Put at the end of body -->
+</body>
+</html>
